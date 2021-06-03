@@ -1,41 +1,63 @@
-# 큐2
+#### solution ######
 
-def queue(command,q):
-  if command.find('push') > -1:
-    c = command.split()
-    com, x = c[0],c[1]
-  com = command
-  if com == 'push':
-    q.append(x)
-    return 
-  elif com == 'pop':
-    if len(q)==0:
-      return -1
-    else:
-      res = q[0]
-      q = q[1::]
-      return res
-  elif com == 'size':
-    return len(q)
-  elif com == 'empty':
-    if len(q) == 0:
-      return 1
-    else:
-      return 0
-  elif com == 'front':
-    if len(q) == 0:
-      return -1
-    else:
-      return q[0]
-  elif com == 'back':
-    if len(q) == 0:
-      return -1
-    else:
-      return q[-1]
+from collections import deque
+from sys import stdin
 
+class queue(object):
+    def __init__(self):
+        self.q = deque()
+
+    def push(self, item):
+        self.q.append(item)
+
+    def pop(self):
+        if self.empty() != 1:
+            return self.q.popleft()
+        else:
+            return -1
+
+    def size(self):
+        return len(self.q)
+
+    def empty(self):
+        if self.size() == 0:
+            return 1
+        else:
+            return 0
+
+    def front(self):
+        if self.empty() != 1:
+            return self.q[0]
+        else:
+            return -1
+
+    def back(self):
+        if self.empty() != 1:
+            return self.q[-1]
+        else:
+            return -1
+
+
+n = stdin.readline()
+q = queue()
+for _ in range(int(n)):
+    run = list(stdin.readline().split())
+    if run[0] == "push":
+        q.push(int(run[1]))
+    elif run[0] == "pop":
+        print(q.pop())
+    elif run[0] == "size":
+        print(q.size())
+    elif run[0] == "empty":
+        print(q.empty())
+    elif run[0] == "front":
+        print(q.front())
+    else:
+        print(q.back())
+
+
+########## ↓↓↓↓↓ 시간 초과 ↓↓↓↓↓ ##########
 import sys
-import time
-start = time.time()
 
 n = int(input())
 q = []
@@ -50,42 +72,28 @@ for i in range(n):
     q.append(x)
   elif com == 'pop':
     if len(q)==0:
-      #print(-1)
       res.append(-1)
     else:
       res.append(q[0])
       q = q[1::]
-      #print(res)
   elif com == 'size':
-    #print(len(q))
     res.append(len(q))
   elif com == 'empty':
     if len(q) == 0:
-      #print(1)
       res.append(1)
     else:
-      #print(0)
       res.append(0)
   elif com == 'front':
     if len(q) == 0:
-      #print(-1)
       res.append(-1)
     else:
-      #print(q[0])
       res.append(q[0])
   elif com == 'back':
     if len(q) == 0:
-      #print(-1)
       res.append(-1)
     else:
-      #print(q[-1])
       res.append(q[-1])
 
 for r in res:
   print(r)
-  
-print("time: ",time.time()-start)
-  #res.append(queue(command))
 
-#for r in res:
-#  print(r)
