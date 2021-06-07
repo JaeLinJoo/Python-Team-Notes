@@ -25,7 +25,7 @@ while True:
 print(price_sum)
 print("첫번째 풀이 시간: ", time.time()-str1)
     
-####
+#### solution #########
 str2 = time.time()
 from sys import stdin
 
