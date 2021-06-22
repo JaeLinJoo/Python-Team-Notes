@@ -27,8 +27,12 @@ def tri_seq(a):
     a.sort()
     if a[0]+a[1]>a[2]:
       return 3
+    elif a[0] == a[1] and a[1] == a[2]:
+      return 1
     else:
       return 2
+  elif len(a)==2:
+    return 2
   else:
     return 1
   
